@@ -1,0 +1,38 @@
+##级别按双数进行排练
+logging:
+  config: classpath:logback.xml
+  level:  
+    org: 
+      springframework: 
+        web: INFO,ERROR
+
+spring:
+  jpa:
+    database: PostgreSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:  
+      hibernate:  
+        dialect: org.hibernate.dialect.PostgreSQLDialect  
+           
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://116.62.56.23:54321/pg_payment
+    username: postgres
+    password: pg123456
+    druid: 
+      initial-size: 5 
+      min-idle: 5
+      maxActive: 20
+      maxWait: 60000
+      poolPreparedStatements: true
+  mybatis:
+    mapperLocations: classpath:mapper/*.xml
+    dialect: PostgreSQL  
+      
+
+
+    
