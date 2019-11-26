@@ -42,11 +42,11 @@ public class DataSourceConfig {
         dataSource.setUrl(env.getProperty("spring.datasource.url"));
         dataSource.setUsername(env.getProperty("spring.datasource.username"));
         dataSource.setPassword(env.getProperty("spring.datasource.password"));
-        dataSource.setTestWhileIdle(true);
-        dataSource.setTestOnBorrow(true);
-        dataSource.setTestOnReturn(false);
+       // dataSource.setTestWhileIdle(true);
+        //dataSource.setTestOnBorrow(true);
+        //dataSource.setTestOnReturn(false);
         //dataSource.setQueryTimeout(300);
-        dataSource.setValidationQuery("select 'Hello Jack' as txt ");
+        //dataSource.setValidationQuery("select 'Hello Jack' as txt ");
         return dataSource;
     }
 

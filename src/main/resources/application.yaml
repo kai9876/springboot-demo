@@ -1,3 +1,5 @@
+server:
+  port: 8081
 ##级别按双数进行排练
 logging:
   config: classpath:logback.xml
