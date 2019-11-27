@@ -33,8 +33,4 @@ spring:
       poolPreparedStatements: true
   mybatis:
     mapperLocations: classpath:mapper/*.xml
-    dialect: PostgreSQL  
-      
-
-
-    
+    dialect: PostgreSQL
