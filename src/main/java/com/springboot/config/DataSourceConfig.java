@@ -46,7 +46,7 @@ public class DataSourceConfig {
         //dataSource.setTestOnBorrow(true);
         //dataSource.setTestOnReturn(false);
         //dataSource.setQueryTimeout(300);
-        //dataSource.setValidationQuery("select 'Hello Jack' as txt ");
+        dataSource.setValidationQuery("select 'Hello Jack' as txt ");
         return dataSource;
     }
 
