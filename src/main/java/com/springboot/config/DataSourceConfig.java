@@ -34,7 +34,7 @@ public class DataSourceConfig {
     private Environment env;
 
 
-
+    @Scope(value="prototype")
     @Bean
     public DataSource dataSource() throws SQLException {
 
