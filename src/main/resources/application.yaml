@@ -1,5 +1,6 @@
 server:
   port: 8081
+
 ##级别按双数进行排练
 logging:
   config: classpath:logback.xml
@@ -34,3 +35,11 @@ spring:
   mybatis:
     mapperLocations: classpath:mapper/*.xml
     dialect: PostgreSQL
+  application: 
+    name: spring-boot-client
+    
+eureka:
+  client:
+    service-url: 
+      defaultZone: http://localhost:1111/eureka/
+      
