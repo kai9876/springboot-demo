@@ -37,6 +37,48 @@ spring:
     dialect: PostgreSQL
   application: 
     name: spring-boot-client
+  rabbitmq: 
+    host: 116.62.56.23
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: rabbitmq_host
+    publisher-confirms: true
+    template: 
+      retry: 
+        enabled: false #开启rabbitmq的生产端{template}重试机制,默认是false,默认重试3次
+      mandatory: false  #关闭消息的强制路由，当生产者将消息发到exchange，如果没有queue进行绑定, 禁止broker发送basic.return，表示当前消息无人消费
+    #因为我们配置了消息的持久性，就算没有消费者，消息也在磁盘，默认就是false
+    listener: 
+      simple: 
+        retry: 
+          enabled: true ##开启rabbitmq的消费者{listener}重试机制,该重试机制需要设置为自动ack,本次方案和PHP保持一致，如果消费者消费失败后，手动将消息放入死信队列等待消息被重新消费
+    # 默认该配置为false,设置为true的意思是，如果消费者消费失败了，rabbitmq server会自动重试3次
+        acknowledge-mode: manual #消费端采用手动应答
+    cache: 
+      connection: 
+        mode: channel #默认缓存模式是channel,在springboot里面,比如在框架rabbitmqTemplate中使用的通道将会可靠地返回到缓存中
+      channel: 
+        size: 10 #设置默认通道缓存的大小
+
+java:  
+  rabbitmq: 
+    send: 
+      service: 
+        exchange: scm3.materials
+        rountkey: direct_rounting_key  #配置生产者的配置，包括exchange,routingkey等
+    consumer: #配置supply监听信息
+      service: 
+        retry: 
+          exchange: scm3.materials.retry
+        fail: 
+          exchange: scm3.materials.fail
+        supply: 
+          retry: 
+            routingkey: material@supply
+        user: #配置user监听信息
+          retry: 
+            routingkey: material@user
     
 eureka:
   client:
